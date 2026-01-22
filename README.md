@@ -21,45 +21,50 @@ A comparação entre eles permitirá identificar qual apresenta melhor desempenh
 
 O relatório está organizado da seguinte forma:
 
-Introdução
+- Introdução
 
-Descrição dos Dados
+- Descrição dos Dados
 
-Modelos
+- Modelos
 
-Resultados
+- Resultados
 
-Discussão
+- Discussão
 
-Conclusão
+- Conclusão
 
-Apêndices
+- Apêndices
 
 Inicialmente, descrevemos o problema e o pré-processamento dos dados. Em seguida, detalhamos a especificação dos modelos em Stan, justificamos as escolhas de verossimilhança e priors, e avaliamos o desempenho por meio de diagnósticos de convergência, verificações preditivas, comparação de modelos e análise de sensibilidade. Por fim, discutimos limitações e possíveis melhorias, e incluímos os códigos completos dos modelos.
 
-Descrição dos Dados
+## Descrição dos Dados
+
 O conjunto de dados foi obtido na plataforma Kaggle e contém 1.000 observações com 20 atributos categóricos, originalmente organizados pelo Prof. Hofmann. Cada entrada representa uma pessoa que contratou um empréstimo, classificada como tendo risco de crédito bom ou ruim.
 
 O dataset completo está disponível em:
 
-## Data description
-The data set is obtained through Kaggle. It contains 1000 data points with 20 categorical attributes created by Professor Hofmann. In this data set, each entry represents a person taking credit from a bank, and each person is classified as having good or bad credit risk according to the set of attributes. The full data set can be found [here](https://www.kaggle.com/datasets/kabure/german-credit-data-with-risk).
+https://www.kaggle.com/datasets/kabure/german-credit-data-with-risk
 
-The data consists of 10 columns, 9 explanatory variables, and 1 target variable, defined as follows:
+9 variáveis explicativas
 
-Explanatory variables:
+1 variável resposta
 
-- Age (numerical/continuous): The age of the subject.
-- Duration (numerical/continuous): The contracted loan due time (in months).
-- Credit.amount (numerical/continuous): The amount of credit of the subject's loan.
-- Sex (textual/categorical): The gender of the subject. This includes "`male`" and "`female`".
-- Job (numerical/categorical): The level of employment of the subject. This includes "`0`" - unskilled and non-resident, "`1`" - unskilled and resident, "`2`" - skilled, "`3`" - highly skilled.
-- Housing (textual/categorical): The type of housing of the subject. This includes "`own`", "`rent`" and "`free`".
-- Saving.accounts (textual/categorical): The level of wealth of subject's saving account. This includes "`little`", "`moderate`", "`quite rich`", "`rich`".
-- Checking.account (textual/categorical): The level of wealth of subject's checking account. This includes "`little`", "`moderate`", "`quite rich`", "`rich`".
-- Purpose (textual/categorical): The purpose of the subject's loan. This includes "`business`", "`car`", "`domestic appliances`", "`education`", "`furniture/equipemt`", "`radio/TV`", "`repairs`", "`vacation/others`".
+## Variáveis Explicativas
 
-Target variable:
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| Age | Numérica | Idade do indivíduo |
+| Duration | Numérica | Prazo do empréstimo (meses) |
+| Credit_amount | Numérica | Valor do crédito |
+| Sex | Categórica | Gênero (male ou female) |
+| Job | Categórica | Nível de ocupação (0 a 3) |
+| Housing | Categórica | Tipo de moradia (own, rent, free) |
+| Saving_accounts | Categórica | Nível de recursos na poupança |
+| Checking_account | Categórica | Nível de recursos na conta corrente |
+| Purpose | Categórica | Finalidade do empréstimo |
 
+## Variável Resposta
 
-- Risk (textual/categorical): The fact that the subject has defaulted (not repaying the loan). This includes "`good`" - good loan (the subject has repaid on time), "`bad`" - bad loan (the subject has defaulted).
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| Risk | Categórica | Classificação de risco (good = bom, bad = ruim) |
